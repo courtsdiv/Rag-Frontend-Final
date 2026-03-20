@@ -1,0 +1,19 @@
+.container {
+  padding: 24px;
+  background: white;
+  border-radius: 14px;
+  border: 1px solid #e3e6e8;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+  margin-bottom: 25px;
+}
+
+.title {
+  margin-bottom: 14px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.answerText {
+  font-size: 17px;
+  line-height: 1.7;
+}

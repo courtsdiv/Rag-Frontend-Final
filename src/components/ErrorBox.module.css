@@ -1,0 +1,19 @@
+.container {
+  padding: 20px;
+  background-color: #ffe8e8;
+  border: 1px solid #ffbcbc;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+}
+
+.title {
+  font-size: 18px;
+  color: #9c1a1a;
+}
+
+.message {
+  margin-top: 8px;
+  font-size: 15px;
+  color: #5a1a1a;
+}

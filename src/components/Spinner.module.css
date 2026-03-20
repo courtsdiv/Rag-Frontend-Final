@@ -1,0 +1,31 @@
+.spinnerContainer {
+  padding: 14px;
+  background: #fff8d6;
+  border: 1px solid #ffe297;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 15px;
+  color: #8a6d00;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.spinnerCircle {
+  width: 18px;
+  height: 18px;
+  border: 3px solid #ffe18a;
+  border-top: 3px solid #aa8d00;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
