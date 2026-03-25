@@ -13,6 +13,7 @@ export default function ChatInput({
     <div className={styles.container}>
       {/* Upload button on left */}
       <button
+        aria-label="Upload file"
         onClick={() => document.getElementById("fileInput").click()}
         className={styles.uploadButton}
       >
@@ -43,23 +44,25 @@ export default function ChatInput({
         }}
         placeholder="Ask a question..."
         className={styles.textInput}
+        data-testid="chat-input"
       />
 
       {/* Ask button */}
       <button
+        aria-label="Ask"
         onClick={askBackend}
         disabled={!question.trim()}
         className={
-          !question.trim()
-            ? styles.askButtonDisabled
-            : styles.askButton
+          !question.trim() ? styles.askButtonDisabled : styles.askButton
         }
       >
         <FiSend size={20} strokeWidth={2} />
       </button>
 
       {/* Clear button */}
-      <button onClick={clearChat} className={styles.clearButton}>
+      <button onClick={clearChat} className={styles.clearButton}
+      data-testid="clear-button"
+      aria-label="Clear">
         <FiTrash2 size={20} strokeWidth={2} />
       </button>
     </div>
