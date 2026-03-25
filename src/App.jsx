@@ -161,7 +161,7 @@ export default function App() {
 
       <div className={styles.card}>
         <div className={styles.titleContainer}>
-          <h1 className={styles.title}>RAG Chat</h1>
+          <h1 className={styles.title}>Query Mind</h1>
         </div>
 
         <ChatInput
