@@ -24,8 +24,8 @@
 }
 
 .uploadButton:hover {
-  background: #e6e7e9;        /* slightly darker grey */
-  border-color: #b8bcc2;      /* darker border */
+  background: #e6e7e9;        
+  border-color: #b8bcc2;      
 }
 
 /* Input box */
@@ -39,7 +39,7 @@
   background-color: #ffffff;
 }
 
-/* Ask button (normal grey version) */
+/* Ask button */
 .askButton {
   height: 46px;
   padding: 0 22px;
@@ -50,9 +50,12 @@
   border: 1px solid #d1d5db;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.15s ease, border-color 0.15s ease;
-  outline: none;          /* ← prevents blue outline */
-  box-shadow: none;       /* ← prevents glow */
+  transition: background 0.15s ease, border-color 0.15s ease;    
+}
+
+.askButton:focus-visible {
+  outline: 2px solid #4A90E2;   /* any accessible colour */
+  outline-offset: 2px;
 }
 
 .askButton:hover {
@@ -71,13 +74,12 @@
   border: 1px solid #c3c3c3;
   cursor: not-allowed;
   font-weight: 600;
-  outline: none !important;        /* ← removes blue outline */
-  box-shadow: none !important;     /* ← removes hover/focus glow */
+  outline: none !important;        
+  box-shadow: none !important;     
 }
 
 .askButtonDisabled:hover {
-  background-color: #d4d4d4;       /* no hover change */
-  border-color: #c3c3c3;
+  background-color: #d4d4d4;       
 }
 
 /* Clear button */
@@ -95,6 +97,6 @@
 }
 
 .clearButton:hover {
-  background-color: #e1e3e6;       /* darker */
-  border-color: #b8bcc2;           /* darker border */
+  background-color: #e1e3e6;       
+  border-color: #b8bcc2;           
 }

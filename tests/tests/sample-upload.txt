@@ -1,0 +1,2 @@
+This is a test document for upload.
+It will be indexed into Qdrant.
