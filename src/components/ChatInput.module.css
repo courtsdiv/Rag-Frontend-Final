@@ -50,9 +50,12 @@
   border: 1px solid #d1d5db;
   cursor: pointer;
   font-weight: 600;
-  transition: background 0.15s ease, border-color 0.15s ease;
-  outline: none;         
-  box-shadow: none;      
+  transition: background 0.15s ease, border-color 0.15s ease;    
+}
+
+.askButton:focus-visible {
+  outline: 2px solid #4A90E2;   /* any accessible colour */
+  outline-offset: 2px;
 }
 
 .askButton:hover {
