@@ -2,15 +2,15 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   // ...existing config...
+
   use: {
     headless: false,
     launchOptions: {
       slowMo: 800,
     },
     trace: 'on-first-retry',
-  },
 
-  use: {
+    // merged in from the second `use:` block
     coverage: {
       enabled: true,
       reporter: ['json', 'html'],
@@ -22,7 +22,6 @@ export default defineConfig({
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
-        channel: 'chrome',       
         headless: false,
         launchOptions: {
           slowMo: 800,
@@ -49,6 +48,5 @@ export default defineConfig({
         },
       },
     },
-    
   ],
 });
