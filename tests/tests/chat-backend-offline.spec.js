@@ -12,7 +12,7 @@ test('shows backend offline error when API returns non-JSON', async ({ page }) =
   });
 
   // 2. Open the app
-  await page.goto('http://localhost:5173/'); // change if your dev URL is different
+  await page.goto('/'); // change if your dev URL is different
 
   // 3. Type any question
   const questionInput = page.getByTestId('chat-input');
