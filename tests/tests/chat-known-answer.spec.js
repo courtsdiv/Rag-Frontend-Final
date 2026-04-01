@@ -18,7 +18,7 @@ test('shows answer and context for a known question', async ({ page }) => {
   });
 
   // 2. Open your app
-  await page.goto('http://localhost:5173/'); // change if your dev URL is different
+  await page.goto('/'); // change if your dev URL is different
 
   // 3. Type a question into the chat input
   const questionInput = page.getByTestId('chat-input');

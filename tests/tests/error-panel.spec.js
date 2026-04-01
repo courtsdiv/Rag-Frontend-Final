@@ -3,7 +3,7 @@ import { test, expect } from '@playwright/test';
 
 test('shows an error message when the backend returns an error', async ({ page }) => {
   // 1. Go to your running frontend
-  await page.goto('http://localhost:5173/');
+  await page.goto('/');
 
   // 2. Mock /api/Rag/answer to return an ApiError response
   await page.route('**/api/Rag/answer', async route => {

@@ -22,7 +22,7 @@ test('uploads a .txt file and shows success message', async ({ page }) => {
   });
 
   // 2. Go to your running app
-  await page.goto('http://localhost:5173/'); // adjust if different
+  await page.goto('/'); // adjust if different
 
   // 3. Click the visible upload button (aria-label="Upload file")
   const uploadButton = page.getByRole('button', { name: 'Upload file' });
@@ -53,7 +53,7 @@ test('shows spinner while file is uploading', async ({ page }) => {
     });
   });
 
-  await page.goto('http://localhost:5173/');
+  await page.goto('/');
 
   const uploadButton = page.getByRole('button', { name: 'Upload file' });
   await uploadButton.click();
@@ -88,7 +88,7 @@ test('large file shows warning and "No" cancels upload', async ({ page }) => {
     });
   });
 
-  await page.goto('http://localhost:5173/');
+  await page.goto('/');
 
   const uploadButton = page.getByRole('button', { name: 'Upload file' });
   await uploadButton.click();
@@ -125,7 +125,7 @@ test('large file warning and "Yes, continue" proceeds with upload', async ({ pag
     });
   });
 
-  await page.goto('http://localhost:5173/');
+  await page.goto('/');
 
   const uploadButton = page.getByRole('button', { name: 'Upload file' });
   await uploadButton.click();

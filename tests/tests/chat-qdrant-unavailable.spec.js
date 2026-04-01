@@ -15,7 +15,7 @@ test('shows vector DB unavailable error when Qdrant is down', async ({ page }) =
   });
 
   // 2. Open the app
-  await page.goto('http://localhost:5173/'); // change if your dev URL is different
+  await page.goto('/'); // change if your dev URL is different
 
   // 3. Type any question into the chat input
   const questionInput = page.getByTestId('chat-input');

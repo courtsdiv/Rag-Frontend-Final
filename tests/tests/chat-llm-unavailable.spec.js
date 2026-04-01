@@ -13,7 +13,7 @@ test('shows LLM unavailable error when model is unavailable', async ({ page }) =
     });
   });
 
-  await page.goto('http://localhost:5173/');
+  await page.goto('/');
 
   const questionInput = page.getByTestId('chat-input');
   await questionInput.fill('Test LLM unavailable');
