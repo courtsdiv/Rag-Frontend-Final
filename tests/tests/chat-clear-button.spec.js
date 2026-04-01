@@ -15,7 +15,7 @@ test('clear button resets chat input, answer and context', async ({ page }) => {
   });
 
   // 2. Open the app
-  await page.goto('http://localhost:5173/');
+  await page.goto('/');
 
   // 3. Type a question and click Ask
   const input = page.getByTestId('chat-input');
