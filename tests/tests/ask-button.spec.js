@@ -2,7 +2,7 @@
 import { test, expect } from '@playwright/test';
 
 test('Ask button disables when empty and enables when text is entered', async ({ page }) => {
-  await page.goto('http://localhost:5173/');
+  await page.goto('/');
 
   // 🔎 Update this if your actual placeholder text is different
   const input = page.getByPlaceholder('Ask a question...');
