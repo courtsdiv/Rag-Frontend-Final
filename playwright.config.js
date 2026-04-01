@@ -1,34 +1,31 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from "@playwright/test";
 
 export default defineConfig({
-  // Let tests use baseURL, so we can do: page.goto('/')
   use: {
     headless: false,
     launchOptions: {
       slowMo: 800,
     },
-    trace: 'on-first-retry',
+    trace: "on-first-retry",
 
     coverage: {
       enabled: true,
-      reporter: ['json', 'html'],
+      reporter: ["json", "html"],
     },
-
-    baseURL: 'http://localhost:5173',
   },
 
-  // Automatically start the frontend dev server for tests
   webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:5173',
+    command: "npm run dev",
+    url: "http://localhost:5173",
     reuseExistingServer: !process.env.CI,
   },
 
   projects: [
     {
-      name: 'chromium',
+      name: "chromium",
       use: {
-        ...devices['Desktop Chrome'],
+        ...devices["Desktop Chrome"],
+        channel: "chrome",
         headless: false,
         launchOptions: {
           slowMo: 800,
@@ -36,9 +33,9 @@ export default defineConfig({
       },
     },
     {
-      name: 'firefox',
+      name: "firefox",
       use: {
-        ...devices['Desktop Firefox'],
+        ...devices["Desktop Firefox"],
         headless: false,
         launchOptions: {
           slowMo: 800,
@@ -46,9 +43,9 @@ export default defineConfig({
       },
     },
     {
-      name: 'webkit',
+      name: "webkit",
       use: {
-        ...devices['Desktop Safari'],
+        ...devices["Desktop Safari"],
         headless: false,
         launchOptions: {
           slowMo: 800,
