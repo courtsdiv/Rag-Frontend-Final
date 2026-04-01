@@ -6,7 +6,7 @@ test('shows an error message when the backend returns an error', async ({ page }
   await page.goto('http://localhost:5173/');
 
   // 2. Mock /api/Rag/answer to return an ApiError response
-  await page.route('/api/Rag/answer', async route => {
+  await page.route('**/api/Rag/answer', async route => {
     // Simulate your backend error shape
     await route.fulfill({
       status: 503,
