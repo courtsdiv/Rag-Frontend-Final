@@ -1,8 +1,7 @@
 import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
-  // ...existing config...
-
+  // Let tests use baseURL, so we can do: page.goto('/')
   use: {
     headless: false,
     launchOptions: {
@@ -10,11 +9,19 @@ export default defineConfig({
     },
     trace: 'on-first-retry',
 
-    // merged in from the second `use:` block
     coverage: {
       enabled: true,
       reporter: ['json', 'html'],
     },
+
+    baseURL: 'http://localhost:5173',
+  },
+
+  // Automatically start the frontend dev server for tests
+  webServer: {
+    command: 'npm run dev',
+    url: 'http://localhost:5173',
+    reuseExistingServer: !process.env.CI,
   },
 
   projects: [
