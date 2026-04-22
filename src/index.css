@@ -1,68 +1,182 @@
+/**
+ * Global base styles.
+ *
+ * This file contains application-wide default styles
+ * applied at the root and element level.
+ *
+ * Most of these styles come from the initial Vite / React
+ * project template and provide sensible defaults
+ * for typography, accessibility, and theming.
+ */
+
 :root {
+  /**
+   * Default font stack using system fonts
+   * for performance and consistency across platforms.
+   */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  /**
+   * Base line height and font weight for readability.
+   */
   line-height: 1.5;
   font-weight: 400;
 
+  /**
+   * Allow the browser to adapt styles
+   * based on the user's preferred colour scheme.
+   */
   color-scheme: light dark;
+
+  /**
+   * Default text and background colours
+   * (primarily used before the app-level styles take over).
+   */
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
+  /**
+   * Improve font rendering and legibility.
+   */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ============================
+   Links
+   ============================ */
+
 a {
+  /**
+   * Slightly bolder links with a default accent colour.
+   */
   font-weight: 500;
   color: #646cff;
   text-decoration: inherit;
 }
+
 a:hover {
+  /**
+   * Darken link colour on hover for visual feedback.
+   */
   color: #535bf2;
 }
 
+/* ============================
+   Base layout
+   ============================ */
+
 body {
+  /**
+   * Remove default browser margin.
+   */
   margin: 0;
+
+  /**
+   * Centre content by default.
+   * This is overridden by the App-level layout.
+   */
   display: flex;
   place-items: center;
+
+  /**
+   * Minimum dimensions to ensure usability
+   * on small screens.
+   */
   min-width: 320px;
   min-height: 100vh;
 }
 
+/* ============================
+   Headings
+   ============================ */
+
 h1 {
+  /**
+   * Default heading size.
+   * App-level styles may override this.
+   */
   font-size: 3.2em;
   line-height: 1.1;
 }
 
+/* ============================
+   Buttons
+   ============================ */
+
 button {
+  /**
+   * Base button styling shared across the app.
+   * Component-specific styles override this where needed.
+   */
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
+
+  /**
+   * Inherit font settings for consistency.
+   */
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
+
+  /**
+   * Neutral dark background used as a default.
+   */
   background-color: #1a1a1a;
+
+  /**
+   * Pointer cursor indicates interactivity.
+   */
   cursor: pointer;
+
+  /**
+   * Smooth transition for hover effects.
+   */
   transition: border-color 0.25s;
 }
+
 button:hover {
+  /**
+   * Highlight border on hover.
+   */
   border-color: #646cff;
 }
+
 button:focus,
 button:focus-visible {
+  /**
+   * Accessible focus outline for keyboard users.
+   */
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* ============================
+   Light mode overrides
+   ============================ */
+
 @media (prefers-color-scheme: light) {
   :root {
+    /**
+     * Override root colours when the user prefers light mode.
+     */
     color: #213547;
     background-color: #ffffff;
   }
+
   a:hover {
+    /**
+     * Slightly different hover colour for light mode.
+     */
     color: #747bff;
   }
+
   button {
+    /**
+     * Lighter button background for light theme.
+     */
     background-color: #f9f9f9;
   }
 }

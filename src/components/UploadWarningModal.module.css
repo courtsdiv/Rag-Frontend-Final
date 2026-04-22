@@ -1,56 +1,181 @@
+/**
+ * Styles for the UploadWarningModal component.
+ *
+ * This file defines the appearance of the modal dialog
+ * shown when a user attempts to upload a large file.
+ *
+ * Styles are scoped locally using CSS Modules.
+ */
+
 .backdrop {
+  /**
+   * Fixed positioning ensures the backdrop covers
+   * the entire viewport regardless of scroll position.
+   */
   position: fixed;
   top: 0;
   left: 0;
+
+  /**
+   * Full viewport width and height to block interaction
+   * with the underlying application.
+   */
   width: 100vw;
   height: 100vh;
+
+  /**
+   * Semi-transparent dark background to focus attention
+   * on the modal while dimming the rest of the UI.
+   */
   background: rgba(0, 0, 0, 0.4);
+
+  /**
+   * Flexbox used to centre the modal horizontally
+   * and vertically within the viewport.
+   */
   display: flex;
   justify-content: center;
   align-items: center;
+
+  /**
+   * High z-index ensures the modal appears above
+   * all other UI elements.
+   */
   z-index: 999;
 }
 
 .modal {
+  /**
+   * White background to clearly separate the modal
+   * content from the backdrop.
+   */
   background: white;
+
+  /**
+   * Padding inside the modal for comfortable spacing
+   * around the text and buttons.
+   */
   padding: 25px;
+
+  /**
+   * Rounded corners to match the overall UI style.
+   */
   border-radius: 12px;
+
+  /**
+   * Fixed width keeps the modal compact and readable.
+   */
   width: 360px;
+
+  /**
+   * Shadow to lift the modal visually above the backdrop.
+   */
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+
+  /**
+   * Centre-align text for a clear, focused message.
+   */
   text-align: center;
 }
 
 .title {
+  /**
+   * Space below the title to separate it from the message text.
+   */
   margin-bottom: 14px;
+
+  /**
+   * Slightly larger font size and heavier weight
+   * to indicate importance.
+   */
   font-size: 20px;
   font-weight: 600;
 }
 
 .text {
+  /**
+   * Standard body text size for readability.
+   */
   font-size: 15px;
+
+  /**
+   * Space below the message to separate it
+   * from the action buttons.
+   */
   margin-bottom: 22px;
 }
 
 .buttonRow {
+  /**
+   * Flex layout to position the action buttons
+   * on opposite sides of the modal.
+   */
   display: flex;
   justify-content: space-between;
 }
 
 .cancelButton {
+  /**
+   * Padding creates a comfortable clickable area.
+   */
   padding: 10px 24px;
+
+  /**
+   * Neutral grey background to indicate a safe,
+   * non-destructive action.
+   */
   background: #d0d0d0;
+
+  /**
+   * Rounded corners to match other buttons in the UI.
+   */
   border-radius: 8px;
+
+  /**
+   * Remove default border styling.
+   */
   border: none;
+
+  /**
+   * Pointer cursor indicates interactivity.
+   */
   cursor: pointer;
+
+  /**
+   * Slightly heavier text for clarity.
+   */
   font-weight: 600;
 }
 
 .confirmButton {
+  /**
+   * Padding matches the cancel button for consistency.
+   */
   padding: 10px 24px;
+
+  /**
+   * Primary blue background to indicate the main action.
+   */
   background: #0078ff;
   color: white;
+
+  /**
+   * Rounded corners to match the design system.
+   */
   border-radius: 8px;
+
+  /**
+   * Remove default border styling.
+   */
   border: none;
+
+  /**
+   * Pointer cursor indicates interactivity.
+   */
   cursor: pointer;
+
+  /**
+   * Slightly heavier text to emphasise the action.
+   */
   font-weight: 600;
 }

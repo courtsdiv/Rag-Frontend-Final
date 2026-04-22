@@ -1,19 +1,74 @@
+/**
+ * Styles for the ErrorBox component.
+ *
+ * This file defines the visual appearance of error messages
+ * displayed to the user when something goes wrong.
+ *
+ * Styles are scoped locally using CSS Modules to ensure
+ * error styling does not affect other components.
+ */
+
 .container {
+  /**
+   * Padding inside the error box so the content
+   * is clearly separated from the edges.
+   */
   padding: 20px;
+
+  /**
+   * Light red background to visually indicate an error state
+   * without being overly aggressive.
+   */
   background-color: #ffe8e8;
+
+  /**
+   * Red border to reinforce that this is an error message.
+   */
   border: 1px solid #ffbcbc;
+
+  /**
+   * Rounded corners to match the overall card-based UI style.
+   */
   border-radius: 12px;
+
+  /**
+   * Space below the error box to separate it from other UI elements.
+   */
   margin-bottom: 20px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+
+  /**
+   * Subtle shadow to lift the error box slightly off the page
+   * and improve visibility.
+   */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
 .title {
+  /**
+   * Slightly larger font size to highlight the error heading.
+   */
   font-size: 18px;
+
+  /**
+   * Dark red text to clearly indicate an error state
+   * while maintaining good contrast.
+   */
   color: #9c1a1a;
 }
 
 .message {
+  /**
+   * Space above the message to separate it from the title.
+   */
   margin-top: 8px;
+
+  /**
+   * Slightly smaller font size for the detailed error message.
+   */
   font-size: 15px;
+
+  /**
+   * Darker text colour for readability against the light background.
+   */
   color: #5a1a1a;
 }

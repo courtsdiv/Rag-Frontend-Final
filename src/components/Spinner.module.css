@@ -1,26 +1,91 @@
+/**
+ * Styles for the Spinner component.
+ *
+ * This file defines the visual appearance and animation
+ * of the loading indicator shown during long-running operations,
+ * such as uploading and indexing files.
+ *
+ * Styles are scoped locally using CSS Modules.
+ */
+
 .spinnerContainer {
+  /**
+   * Padding inside the container so the spinner and text
+   * are not cramped.
+   */
   padding: 14px;
+
+  /**
+   * Light yellow background to indicate a "processing" state
+   * (distinct from errors or success messages).
+   */
   background: #fff8d6;
+
+  /**
+   * Border colour reinforces the processing/warning state
+   * without being alarming.
+   */
   border: 1px solid #ffe297;
+
+  /**
+   * Rounded corners to match the overall card-based UI style.
+   */
   border-radius: 10px;
+
+  /**
+   * Space below the spinner to separate it from other UI elements.
+   */
   margin-bottom: 20px;
+
+  /**
+   * Font size and colour chosen for readability and consistency
+   * with other status messages.
+   */
   font-size: 15px;
   color: #8a6d00;
+
+  /**
+   * Flex layout aligns the spinner icon and text horizontally.
+   */
   display: flex;
   align-items: center;
   gap: 10px;
+
+  /**
+   * Subtle shadow to lift the spinner container slightly off the page.
+   */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .spinnerCircle {
+  /**
+   * Fixed size for the spinning circle.
+   */
   width: 18px;
   height: 18px;
+
+  /**
+   * Circular border with a highlighted top segment
+   * to create a spinning effect.
+   */
   border: 3px solid #ffe18a;
   border-top: 3px solid #aa8d00;
+
+  /**
+   * Fully rounded to form a circle.
+   */
   border-radius: 50%;
+
+  /**
+   * Continuous rotation animation.
+   */
   animation: spin 0.8s linear infinite;
 }
 
+/**
+ * Keyframes for the spinner rotation animation.
+ * Rotates the element 360 degrees continuously.
+ */
 @keyframes spin {
   from {
     transform: rotate(0deg);

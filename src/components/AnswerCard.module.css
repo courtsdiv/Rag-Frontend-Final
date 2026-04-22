@@ -1,19 +1,74 @@
+/**
+ * Styles for the AnswerCard component.
+ *
+ * This file defines the visual appearance of the answer card
+ * displayed after a user receives a response from the backend.
+ *
+ * These styles are scoped locally to the AnswerCard component
+ * using CSS Modules, so class names will not leak or clash
+ * with styles in other parts of the application.
+ */
+
 .container {
+  /**
+   * Adds space inside the card so content does not touch the edges.
+   */
   padding: 24px;
+
+  /**
+   * White background to visually separate the answer card
+   * from the rest of the UI.
+   */
   background: white;
+
+  /**
+   * Rounded corners to give the card a softer, modern look.
+   */
   border-radius: 14px;
+
+  /**
+   * Light border to clearly define the card boundary
+   * without being visually heavy.
+   */
   border: 1px solid #e3e6e8;
+
+  /**
+   * Subtle shadow to lift the card off the page
+   * and improve visual hierarchy.
+   */
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+
+  /**
+   * Adds space below the card so it does not collide
+   * with other UI elements.
+   */
   margin-bottom: 25px;
 }
 
 .title {
+  /**
+   * Space below the title to separate it from the answer text.
+   */
   margin-bottom: 14px;
+
+  /**
+   * Larger font size and heavier weight to clearly
+   * indicate this is a section heading.
+   */
   font-size: 24px;
   font-weight: 700;
 }
 
 .answerText {
+  /**
+   * Slightly larger font size for improved readability,
+   * especially for longer answers.
+   */
   font-size: 17px;
+
+  /**
+   * Increased line height to make multi-line text
+   * easier to read and scan.
+   */
   line-height: 1.7;
 }
