@@ -1,35 +1,174 @@
+/**
+ * Global styles for the App component.
+ *
+ * This file defines the overall layout and visual structure
+ * of the RAG chat interface, including page layout, chat bubbles,
+ * and title styling.
+ *
+ * Styles are scoped locally using CSS Modules.
+ */
+
 .page {
+  /**
+   * Ensure the page always fills the full viewport height.
+   */
   min-height: 100vh;
   width: 100vw;
+
+  /**
+   * Centre the main application card horizontally
+   * while keeping it aligned to the top vertically.
+   */
   display: flex;
   justify-content: center;
   align-items: flex-start;
+
+  /**
+   * Light background colour to separate the app card
+   * from the browser window.
+   */
   background-color: #f5f6f8;
+
+  /**
+   * Space at the top so the card is not flush with the window edge.
+   */
   padding-top: 50px;
 }
 
-/* Main bubble */
+/* ============================
+   Main application card
+   ============================ */
+
 .card {
+  /**
+   * Full width up to a readable maximum.
+   */
   width: 100%;
   max-width: 900px;
+
+  /**
+   * White background and rounded corners
+   * to create a card-based layout.
+   */
   background: white;
   border-radius: 18px;
+
+  /**
+   * Subtle border and shadow for depth.
+   */
   border: 1px solid #e2e8f0;
   padding: 40px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 }
 
-/* Title block */
+/* ============================
+   Chat history
+   ============================ */
+
+.chat-history {
+  /**
+   * Stack messages vertically.
+   */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  /**
+   * Space below the chat history
+   * before the input controls.
+   */
+  margin-bottom: 16px;
+}
+
+/* ============================
+   Chat bubbles
+   ============================ */
+
+.bubble {
+  /**
+   * Limit message width for readability.
+   */
+  max-width: 80%;
+
+  /**
+   * Padding and rounded corners
+   * to create a speech-bubble effect.
+   */
+  padding: 12px;
+  border-radius: 12px;
+
+  /**
+   * Comfortable line spacing for longer messages.
+   */
+  line-height: 1.4;
+}
+
+/**
+ * User messages are aligned to the right
+ * to visually distinguish them from assistant messages.
+ */
+.user {
+  align-self: flex-end;
+  background-color: #e8f0ff;
+}
+
+/**
+ * Assistant messages are aligned to the left
+ * and use a neutral background colour.
+ */
+.assistant {
+  align-self: flex-start;
+  background-color: #f5f5f5;
+}
+
+.bubble-content {
+  /**
+   * Preserve line breaks and spacing
+   * returned from the backend.
+   */
+  white-space: pre-wrap;
+}
+
+.bubble-context {
+  /**
+   * Styling for the retrieved context section
+   * shown under assistant messages.
+   */
+  margin-top: 8px;
+  font-size: 0.9em;
+  opacity: 0.85;
+}
+
+/* ============================
+   Title block
+   ============================ */
+
 .titleContainer {
+  /**
+   * Centre the title and visually separate it
+   * from the chat content below.
+   */
   text-align: center;
   padding-bottom: 25px;
   margin-bottom: 25px;
+
+  /**
+   * Divider line to clearly define sections.
+   */
   border-bottom: 2px solid #e2e8f0;
 }
 
 .title {
+  /**
+   * Large, bold title to clearly identify
+   * the application.
+   */
   font-size: 46px;
   margin: 0;
   font-weight: 800;
+
+  /**
+   * Dark colour for strong contrast and readability.
+   */
   color: #1d2d3b;
 }

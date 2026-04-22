@@ -1,102 +1,271 @@
+/**
+ * Styles for the ChatInput component.
+ *
+ * This file controls the layout and appearance of the chat input area,
+ * including the text input, upload button, ask button, and clear button.
+ *
+ * These styles are scoped locally using CSS Modules to avoid
+ * clashes with other components.
+ */
+
 .container {
+  /**
+   * White background and subtle border to visually separate
+   * the input area from the rest of the page.
+   */
   background: white;
   border: 1px solid #e4e7eb;
   border-radius: 14px;
+
+  /**
+   * Inner spacing so elements do not touch the container edges.
+   */
   padding: 6px;
+
+  /**
+   * Flex layout used to align buttons and input in a single row.
+   */
   display: flex;
   align-items: center;
   gap: 12px;
+
+  /**
+   * Space below the input area to separate it from other UI elements.
+   */
   margin-bottom: 20px;
 }
 
-/* Upload button */
+/* ============================
+   Upload button
+   ============================ */
+
 .uploadButton {
+  /**
+   * Fixed size to ensure consistent clickable area.
+   */
   width: 52px;
   height: 52px;
+
+  /**
+   * Rounded corners to match the overall design language.
+   */
   border-radius: 10px;
+
+  /**
+   * Light border and background to indicate secondary action.
+   */
   border: 1px solid #d0d7de;
   background: #f3f4f6;
+
+  /**
+   * Pointer cursor to indicate interactivity.
+   */
   cursor: pointer;
+
+  /**
+   * Center the icon within the button.
+   */
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /**
+   * Smooth visual feedback on hover.
+   */
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .uploadButton:hover {
-  background: #e6e7e9;        
-  border-color: #b8bcc2;      
+  /**
+   * Slightly darker background and border on hover
+   * to give visual feedback to the user.
+   */
+  background: #e6e7e9;
+  border-color: #b8bcc2;
 }
 
-/* Input box */
+/* ============================
+   Text input
+   ============================ */
+
 .textInput {
+  /**
+   * Allows the text input to expand and fill available space
+   * between the buttons.
+   */
   flex: 1;
+
+  /**
+   * Height matches the buttons for visual consistency.
+   */
   height: 46px;
+
+  /**
+   * Horizontal padding for comfortable typing.
+   */
   padding: 0 14px;
+
+  /**
+   * Font size chosen for readability.
+   */
   font-size: 16px;
+
+  /**
+   * Rounded corners and subtle border to match the card style.
+   */
   border-radius: 10px;
   border: 1px solid #d0d7de;
+
+  /**
+   * Explicit background colour for consistency across browsers.
+   */
   background-color: #ffffff;
 }
 
-/* Ask button */
+/* ============================
+   Ask button (enabled)
+   ============================ */
+
 .askButton {
+  /**
+   * Same height as the text input for alignment.
+   */
   height: 46px;
   padding: 0 22px;
   font-size: 16px;
+
+  /**
+   * Rounded corners to match other controls.
+   */
   border-radius: 10px;
+
+  /**
+   * Neutral background to indicate a primary but non-destructive action.
+   */
   background-color: #f3f4f6;
   color: #111827;
+
+  /**
+   * Light border for definition.
+   */
   border: 1px solid #d1d5db;
+
+  /**
+   * Pointer cursor indicates the button is clickable.
+   */
   cursor: pointer;
+
+  /**
+   * Slightly heavier text to emphasise the action.
+   */
   font-weight: 600;
-  transition: background 0.15s ease, border-color 0.15s ease;    
+
+  /**
+   * Smooth hover transitions for better user experience.
+   */
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .askButton:focus-visible {
-  outline: 2px solid #4A90E2;   /* any accessible colour */
+  /**
+   * Visible focus outline for keyboard accessibility.
+   */
+  outline: 2px solid #4A90E2;
   outline-offset: 2px;
 }
 
 .askButton:hover {
+  /**
+   * Visual feedback when hovering over the enabled button.
+   */
   background-color: #e1e3e6;
   border-color: #b8bcc2;
 }
 
-/* Ask disabled */
+/* ============================
+   Ask button (disabled)
+   ============================ */
+
 .askButtonDisabled {
+  /**
+   * Same sizing as enabled button to prevent layout shift.
+   */
   height: 46px;
   padding: 0 22px;
   font-size: 16px;
   border-radius: 10px;
+
+  /**
+   * Muted colours to clearly indicate disabled state.
+   */
   background-color: #d4d4d4;
   color: #888;
   border: 1px solid #c3c3c3;
+
+  /**
+   * Not-allowed cursor to reinforce disabled behaviour.
+   */
   cursor: not-allowed;
+
+  /**
+   * Maintain font weight for consistency.
+   */
   font-weight: 600;
-  outline: none !important;        
-  box-shadow: none !important;     
+
+  /**
+   * Remove focus and shadow styles when disabled.
+   */
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .askButtonDisabled:hover {
-  background-color: #d4d4d4;       
+  /**
+   * Disabled button should not change appearance on hover.
+   */
+  background-color: #d4d4d4;
 }
 
-/* Clear button */
+/* ============================
+   Clear button
+   ============================ */
+
 .clearButton {
+  /**
+   * Same size and styling as Ask button for visual consistency.
+   */
   height: 46px;
   padding: 0 22px;
   font-size: 16px;
   border-radius: 10px;
+
+  /**
+   * Neutral styling as this is a secondary action.
+   */
   background-color: #f3f4f6;
   color: #111827;
   border: 1px solid #d1d5db;
+
+  /**
+   * Pointer cursor indicates interactivity.
+   */
   cursor: pointer;
+
+  /**
+   * Slightly bold text for clarity.
+   */
   font-weight: 600;
+
+  /**
+   * Smooth hover transition.
+   */
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .clearButton:hover {
-  background-color: #e1e3e6;       
-  border-color: #b8bcc2;           
+  /**
+   * Hover feedback to indicate the button is interactive.
+   */
+  background-color: #e1e3e6;
+  border-color: #b8bcc2;
 }

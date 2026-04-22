@@ -1,20 +1,74 @@
+/**
+ * Styles for the ContextList component.
+ *
+ * This file defines the visual appearance of the context section
+ * that displays the document chunks retrieved by the RAG system.
+ *
+ * Styles are scoped locally using CSS Modules to prevent
+ * conflicts with other components.
+ */
+
 .container {
+  /**
+   * Adds spacing above the context list so it is visually
+   * separated from the answer section.
+   */
   margin-top: 20px;
 }
 
 .title {
+  /**
+   * Space below the title to separate it from the list items.
+   */
   margin-bottom: 14px;
+
+  /**
+   * Slightly smaller heading size than the main answer title
+   * to indicate this is supporting information.
+   */
   font-size: 20px;
   font-weight: 600;
 }
 
 .item {
+  /**
+   * Padding inside each context block to improve readability.
+   */
   padding: 14px 16px;
+
+  /**
+   * Light background colour to distinguish context chunks
+   * from the main answer content.
+   */
   background: #f7f9fa;
+
+  /**
+   * Subtle border to define each chunk without being visually heavy.
+   */
   border: 1px solid #dfe3e6;
+
+  /**
+   * Rounded corners to match the overall card-based UI style.
+   */
   border-radius: 10px;
+
+  /**
+   * Space below each chunk to separate it from the next one.
+   */
   margin-bottom: 12px;
+
+  /**
+   * Slightly smaller font size to indicate secondary information.
+   */
   font-size: 15px;
+
+  /**
+   * Increased line height to make longer chunks easier to read.
+   */
   line-height: 1.6;
+
+  /**
+   * Very subtle shadow to lift each chunk slightly off the background.
+   */
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
 }

@@ -1,191 +1,143 @@
-import { useState } from "react";
+/**
+ * App Component
+ *
+ * This is the root component of the frontend application.
+ * It is responsible for composing all UI components and hooks
+ * that make up the RAG chat interface.
+ *
+ * It:
+ * - Coordinates chat behaviour via the useChat hook
+ * - Coordinates file upload behaviour via the useFileUpload hook
+ * - Renders the overall page layout
+ *
+ * This component does NOT:
+ * - Contain business logic
+ * - Call the backend directly
+ * - Manage low-level state for chat or uploads
+ *
+ * It acts as the composition and orchestration layer.
+ */
 
 import UploadWarningModal from "./components/UploadWarningModal";
 import ChatInput from "./components/ChatInput";
 import Spinner from "./components/Spinner";
 import UploadMessage from "./components/UploadMessage";
 import ErrorBox from "./components/ErrorBox";
-import AnswerCard from "./components/AnswerCard";
-import ContextList from "./components/ContextList";
+
+import { useChat } from "./hooks/useChat";
+import { useFileUpload } from "./hooks/useFileUpload";
 
 import styles from "./App.module.css";
 
 export default function App() {
-  const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
-  const [errorMsg, setErrorMsg] = useState("");
-  const [contextChunks, setContextChunks] = useState([]);
+  /**
+   * Chat-related state and actions.
+   * All chat logic is encapsulated inside useChat.
+   */
+  const {
+    messages,
+    question,
+    setQuestion,
+    sendMessage,
+    clearChat,
+    errorMsg,
+    statusCode,
+    errorCode,
+  } = useChat();
 
-  const [statusCode, setStatusCode] = useState(null);
-  const [errorCode, setErrorCode] = useState("");
-  const [uploadFile, setUploadFile] = useState("");
-
-  const [showUploadWarning, setShowUploadWarning] = useState(false);
-  const [pendingFile, setPendingFile] = useState(null);
-  const [uploading, setUploading] = useState(false);
-
-  // PROCESS FILE UPLOAD
-  async function processFileUpload(file) {
-    setUploadFile("");
-    setUploading(true);
-
-    const text = await file.text();
-
-    try {
-      const response = await fetch("/api/Rag/index", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(text),
-      });
-
-      if (!response.ok) {
-        const data = await response.json();
-        setUploadFile(`Error: ${data.errorCode} - ${data.message}`);
-        return;
-      }
-
-      const result = await response.json();
-      setUploadFile(result.message);
-    } catch (err) {
-      setUploadFile("Could not reach backend.");
-    } finally {
-      setUploading(false);
-      const fileInput = document.getElementById("fileInput");
-      if (fileInput) fileInput.value = "";
-    }
-  }
-
-  // FILE UPLOAD HANDLER
-  async function handleFileUpload(e) {
-    setUploadFile("");
-
-    const file = e.target.files[0];
-    if (!file) return;
-
-    if (file.type !== "text/plain") {
-      setUploadFile("Only .txt files are allowed.");
-      return;
-    }
-
-    const fiftyKb = 50 * 1024;
-    const oneMb = 1_000_000;
-
-    if (file.size > fiftyKb && file.size <= oneMb) {
-      setPendingFile(file);
-      setShowUploadWarning(true);
-      return;
-    }
-
-    await processFileUpload(file);
-  }
-
-  // CLEAR CHAT
-  function clearChat() {
-    setQuestion("");
-    setAnswer("");
-    setContextChunks([]);
-    setErrorMsg("");
-    setStatusCode(null);
-    setErrorCode("");
-    setUploadFile("");
-  }
-
-  // ASK BACKEND
-  async function askBackend() {
-    setContextChunks([]);
-    setErrorMsg("");
-    setStatusCode(null);
-    setErrorCode("");
-    setAnswer("Loading...");
-
-    try {
-      const response = await fetch("/api/Rag/answer", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(question),
-      });
-
-      if (!response.ok) {
-        const contentType = response.headers.get("content-type") || "";
-        setStatusCode(response.status);
-
-        if (!contentType.includes("application/json")) {
-          setErrorMsg("Could not reach the backend.");
-          setErrorCode("BACKEND_OFFLINE");
-          setAnswer("");
-          return;
-        }
-
-        const data = await response.json();
-        setErrorMsg(data.message || "Something went wrong.");
-        setErrorCode(data.errorCode || "UNKNOWN_ERROR");
-        setAnswer("");
-        return;
-      }
-
-      const data = await response.json();
-
-      if (!data.answer) {
-        setErrorMsg("No answer found.");
-        setErrorCode("NO_ANSWER");
-        return;
-      }
-
-      setAnswer(data.answer);
-      setContextChunks(data.context || []);
-    } catch (err) {
-      setErrorMsg("Could not reach the backend.");
-      setErrorCode("BACKEND_OFFLINE");
-      setAnswer("");
-    }
-  }
+  /**
+   * File upload and indexing behaviour.
+   * All upload-related logic is encapsulated inside useFileUpload.
+   */
+  const {
+    uploadFile,
+    uploading,
+    showUploadWarning,
+    handleFileUpload,
+    cancelUpload,
+    confirmUpload,
+  } = useFileUpload();
 
   return (
     <div className={styles.page}>
+      {/*
+        Modal warning shown when the user selects
+        a moderately large file that may take longer to process.
+      */}
       <UploadWarningModal
         show={showUploadWarning}
-        onCancel={() => {
-          const fileInput = document.getElementById("fileInput");
-          if (fileInput) fileInput.value = "";
-          setShowUploadWarning(false);
-          setPendingFile(null);
-        }}
-        onConfirm={() => {
-          setShowUploadWarning(false);
-          processFileUpload(pendingFile);
-          setPendingFile(null);
-          const fileInput = document.getElementById("fileInput");
-          if (fileInput) fileInput.value = "";
-        }}
+        onCancel={cancelUpload}
+        onConfirm={confirmUpload}
       />
 
+      {/*
+        Main application card.
+        Contains chat history, input, and feedback components.
+      */}
       <div className={styles.card}>
+        {/* Application title */}
         <div className={styles.titleContainer}>
           <h1 className={styles.title}>RAG Pipeline</h1>
         </div>
 
+        {/*
+          Chat history area.
+          Displays both user and assistant messages.
+        */}
+        <div className={styles["chat-history"]}>
+          {messages.map((msg) => (
+            <div
+              key={msg.id}
+              className={`${styles.bubble} ${styles[msg.role]}`}
+            >
+              {/* Main message content */}
+              <div className={styles["bubble-content"]}>
+                {msg.content}
+              </div>
+
+              {/*
+                Optional context display for assistant messages.
+                Shows which retrieved chunks were used to generate the answer.
+              */}
+              {msg.role === "assistant" &&
+                msg.context?.length > 0 && (
+                  <div className={styles["bubble-context"]}>
+                    <strong>Context used</strong>
+                    <ul>
+                      {msg.context.map((c, i) => (
+                        <li key={i}>{c}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+            </div>
+          ))}
+        </div>
+
+        {/*
+          Chat input area.
+          Handles user questions, file uploads, and clearing chat.
+        */}
         <ChatInput
           question={question}
           setQuestion={setQuestion}
-          setErrorMsg={setErrorMsg}
-          askBackend={askBackend}
+          askBackend={sendMessage}
           clearChat={clearChat}
           handleFileUpload={handleFileUpload}
         />
 
+        {/* Loading indicator shown while indexing is in progress */}
         {uploading && <Spinner />}
 
+        {/* Informational message after file upload/indexing */}
         <UploadMessage message={uploadFile} />
 
+        {/* Centralised error display */}
         <ErrorBox
           statusCode={statusCode}
           errorCode={errorCode}
           message={errorMsg}
         />
-
-        {answer && !errorMsg && <AnswerCard answer={answer} />}
-
-        <ContextList chunks={contextChunks} />
       </div>
     </div>
   );
